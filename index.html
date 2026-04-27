@@ -267,10 +267,10 @@
       .nav-links { display: none; }
       .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 68px 0 0 0; background: rgba(10,10,10,.98); padding: 36px 24px; gap: 22px; align-items: flex-start; z-index: 999; }
       .nav-hamburger { display: flex; }
-      #hzone-driver { height: auto !important; }
-      #hzone-sticky { position: static; height: auto; overflow: visible; }
-      #hzone-track { flex-direction: column; height: auto; transform: none !important; }
-      .hpanel { width: 100%; height: auto; min-height: auto; }
+      #hzone-driver { height: auto !important; display: block !important; }
+      #hzone-sticky { position: static !important; height: auto !important; overflow: visible !important; }
+      #hzone-track { flex-direction: column !important; height: auto !important; transform: none !important; will-change: auto !important; }
+      .hpanel { width: 100%; height: auto !important; min-height: auto; overflow: visible; }
       #hzone-progress, .hzone-dots { display: none !important; }
       .hero-content { padding: 96px 24px 60px; }
       .hero-stats { flex-wrap: wrap; }
@@ -279,8 +279,8 @@
       .hp-inner, .insta-inner { padding: 72px 24px 48px; }
       .cards-row { grid-template-columns: 1fr; }
       .fin-split { flex-direction: column; }
-      .fin-left { width: 100%; padding: 60px 24px; }
-      .fin-right { padding: 56px 24px; }
+      .fin-left { width: 100%; padding: 48px 24px; }
+      .fin-right { padding: 48px 24px; min-height: 320px; }
       .insta-grid { grid-template-columns: repeat(2,1fr); }
       .cats-section { padding: 72px 24px; }
       .cats-grid { grid-template-columns: 1fr 1fr; }
