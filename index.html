@@ -355,6 +355,69 @@
       .footer-grid { grid-template-columns: 1fr; }
       .insta-grid { grid-template-columns: repeat(2,1fr); }
     }
+
+    /* ── V5: FINANCIAMENTO FORM ── */
+    .fin-form-section { background: var(--dark-2); padding: 96px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .fin-form-left { position: sticky; top: 100px; }
+    .fin-form-left .sec-label { font-family: 'Barlow Condensed'; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); font-weight: 700; margin-bottom: 10px; display: block; }
+    .fin-form-left h2 { font-family: 'Bebas Neue'; font-size: clamp(36px,5vw,60px); line-height: .95; }
+    .fin-form-left p { font-size: 15px; font-weight: 300; color: var(--white-dim); line-height: 1.7; margin-top: 16px; max-width: 420px; }
+    .fin-benefits { margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
+    .fin-benefit { display: flex; align-items: flex-start; gap: 14px; }
+    .fin-benefit-icon { width: 38px; height: 38px; background: rgba(232,93,4,0.15); border: 1px solid var(--border-o); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+    .fin-benefit-text strong { font-family: 'Barlow Condensed'; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; display: block; color: var(--white); }
+    .fin-benefit-text span { font-size: 13px; font-weight: 300; color: var(--white-dim); }
+    .fin-form-right { background: var(--dark); border: 1px solid var(--border); border-radius: 6px; padding: 36px; }
+    .fin-form-title { font-family: 'Bebas Neue'; font-size: 24px; margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-row.full { grid-template-columns: 1fr; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-family: 'Barlow Condensed'; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--white-dim); }
+    .form-input, .form-select, .form-textarea {
+      background: var(--dark-2); border: 1px solid var(--border);
+      color: var(--white); padding: 11px 14px; border-radius: 3px;
+      font-family: 'Barlow'; font-size: 14px; outline: none;
+      transition: border-color .2s; width: 100%;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(245,245,245,0.3); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--orange); }
+    .form-select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23999' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .form-select option { background: var(--dark-3); }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-submit {
+      width: 100%; margin-top: 20px;
+      background: var(--orange); color: #fff;
+      border: none; padding: 16px 24px; border-radius: 3px;
+      font-family: 'Barlow Condensed'; font-size: 15px;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; transition: background .2s, transform .2s;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 4px 18px rgba(232,93,4,.25);
+    }
+    .form-submit:hover { background: var(--orange-dark); transform: translateY(-2px); }
+
+    /* ── V6: LOCALIZAÇÃO ── */
+    .loc-section { background: var(--black); padding: 96px 80px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: stretch; }
+    .loc-info .sec-label { font-family: 'Barlow Condensed'; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--orange); font-weight: 700; margin-bottom: 10px; display: block; }
+    .loc-info h2 { font-family: 'Bebas Neue'; font-size: clamp(36px,5vw,60px); line-height: .95; margin-bottom: 36px; }
+    .loc-items { display: flex; flex-direction: column; gap: 20px; }
+    .loc-item { display: flex; align-items: flex-start; gap: 16px; }
+    .loc-icon { width: 44px; height: 44px; background: var(--dark-2); border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+    .loc-item-label { font-family: 'Barlow Condensed'; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); font-weight: 700; margin-bottom: 4px; }
+    .loc-item-val { font-size: 15px; font-weight: 300; line-height: 1.6; color: var(--white-dim); }
+    .loc-item-val strong { color: var(--white); font-weight: 500; }
+    .loc-map-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; background: var(--orange); color: #fff; padding: 13px 28px; border-radius: 2px; font-family: 'Barlow Condensed'; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: background .2s, transform .2s; }
+    .loc-map-btn:hover { background: var(--orange-dark); transform: translateY(-2px); }
+    .loc-map-wrap { border-radius: 6px; overflow: hidden; border: 1px solid var(--border); height: 100%; min-height: 460px; position: relative; }
+    .loc-map-wrap iframe { width: 100%; height: 100%; border: none; display: block; filter: grayscale(30%) invert(90%) hue-rotate(180deg); }
+
+    @media (max-width: 900px) {
+      .fin-form-section { padding: 72px 24px; grid-template-columns: 1fr; }
+      .fin-form-left { position: static; }
+      .loc-section { padding: 72px 24px; grid-template-columns: 1fr; }
+      .loc-map-wrap { height: 320px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -424,7 +487,8 @@
     <li><a href="index.html">Início</a></li>
     <li><a href="estoque.html">Estoque</a></li>
     <li><a href="#financiamento">Financiamento</a></li>
-    <li><a href="#contato">Contato</a></li>
+    <li><a href="#simular">Financiamento</a></li>
+    <li><a href="#localizacao">Localização</a></li>
   </ul>
   <a href="https://wa.me/5521973970330?text=Olá!%20Quero%20falar%20com%20um%20consultor." target="_blank" class="nav-cta">
     <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -582,6 +646,153 @@
     </div>
   </div>
 </section>
+
+
+<!-- FINANCIAMENTO FORM -->
+<section class="v-section fin-form-section" id="simular">
+  <div class="fin-form-left">
+    <span class="sec-label">Crédito facilitado</span>
+    <h2>SIMULE SEU<br>FINANCIAMENTO<br><span style="color:var(--orange)">AGORA.</span></h2>
+    <p>Preencha os dados ao lado e envie sua simulação pelo WhatsApp. Retorno em minutos com as melhores condições do mercado.</p>
+    <div class="fin-benefits">
+      <div class="fin-benefit">
+        <div class="fin-benefit-icon">⚡</div>
+        <div class="fin-benefit-text">
+          <strong>Aprovação em minutos</strong>
+          <span>Resposta rápida via WhatsApp, sem burocracia.</span>
+        </div>
+      </div>
+      <div class="fin-benefit">
+        <div class="fin-benefit-icon">🏦</div>
+        <div class="fin-benefit-text">
+          <strong>Melhores bancos</strong>
+          <span>BV, Pan, Santander e outros — melhor taxa para você.</span>
+        </div>
+      </div>
+      <div class="fin-benefit">
+        <div class="fin-benefit-icon">🔄</div>
+        <div class="fin-benefit-text">
+          <strong>Seu carro como entrada</strong>
+          <span>Avaliamos seu veículo e abatemos direto no financiamento.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fin-form-right">
+    <div class="fin-form-title">SEUS DADOS</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Nome *</label>
+        <input class="form-input" id="finNome" type="text" placeholder="Seu nome completo">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Telefone *</label>
+        <input class="form-input" id="finTel" type="tel" placeholder="(21) 99999-9999">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">CPF</label>
+        <input class="form-input" id="finCpf" type="text" placeholder="000.000.000-00">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Data de Nascimento</label>
+        <input class="form-input" id="finNasc" type="text" placeholder="dd/mm/aaaa">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Veículo de Interesse</label>
+        <input class="form-input" id="finVeiculo" type="text" placeholder="Ex: Honda HR-V 2022">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Valor de Entrada</label>
+        <input class="form-input" id="finEntrada" type="text" placeholder="Ex: R$ 15.000">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Renda Mensal</label>
+        <select class="form-select" id="finRenda">
+          <option value="">Selecione</option>
+          <option>Até R$ 2.000</option>
+          <option>R$ 2.000 a R$ 4.000</option>
+          <option>R$ 4.000 a R$ 7.000</option>
+          <option>R$ 7.000 a R$ 10.000</option>
+          <option>Acima de R$ 10.000</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Possui Troca?</label>
+        <select class="form-select" id="finTroca">
+          <option value="Não">Não</option>
+          <option value="Sim">Sim</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label class="form-label">Observações</label>
+        <textarea class="form-textarea" id="finObs" placeholder="Algum detalhe adicional?"></textarea>
+      </div>
+    </div>
+    <button class="form-submit" onclick="enviarSimulacao()">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Enviar Simulação pelo WhatsApp
+    </button>
+  </div>
+</section>
+
+<!-- LOCALIZAÇÃO -->
+<section class="v-section loc-section" id="localizacao">
+  <div class="loc-info">
+    <span class="sec-label">Como chegar</span>
+    <h2>ONDE<br>ESTAMOS.</h2>
+    <div class="loc-items">
+      <div class="loc-item">
+        <div class="loc-icon">📍</div>
+        <div>
+          <div class="loc-item-label">Endereço</div>
+          <div class="loc-item-val"><strong>Av. Automóvel Clube, 518</strong><br>Vilar dos Teles — São João de Meriti, RJ</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">🕐</div>
+        <div>
+          <div class="loc-item-label">Horário</div>
+          <div class="loc-item-val"><strong>Seg–Sex:</strong> 8h às 18h<br><strong>Sábado:</strong> 9h às 14h<br><strong>Domingo:</strong> Fechado</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">📞</div>
+        <div>
+          <div class="loc-item-label">Telefone / WhatsApp</div>
+          <div class="loc-item-val"><strong>(21) 2209-5342</strong><br>(21) 97397-0330</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-icon">✉️</div>
+        <div>
+          <div class="loc-item-label">WhatsApp Direto</div>
+          <div class="loc-item-val">Atendimento 100% pelo WhatsApp<br><strong>NINA — Nossa SDR Virtual</strong></div>
+        </div>
+      </div>
+    </div>
+    <a href="https://www.google.com/maps/search/?api=1&query=Av.+Automóvel+Clube,+518,+Vilar+dos+Teles,+São+João+de+Meriti,+RJ" target="_blank" class="loc-map-btn">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Abrir no Google Maps
+    </a>
+  </div>
+  <div class="loc-map-wrap">
+    <iframe
+      src="https://maps.google.com/maps?q=Av.+Automóvel+Clube,+518,+Vilar+dos+Teles,+São+João+de+Meriti,+RJ,+Brazil&output=embed&z=16"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
 
 <!-- CTA FINAL -->
 <section class="v-section cta-final" id="contato">
@@ -871,6 +1082,43 @@ setupDots();
 document.getElementById('heroBg').classList.add('loaded');
 window.addEventListener('scroll', onScroll, { passive: true });
 window.addEventListener('resize', () => setDriverHeight(), { passive: true });
+
+  /* ════ FORM SIMULAÇÃO ════ */
+  function enviarSimulacao() {
+    const nome    = document.getElementById('finNome').value.trim();
+    const tel     = document.getElementById('finTel').value.trim();
+    const cpf     = document.getElementById('finCpf').value.trim();
+    const nasc    = document.getElementById('finNasc').value.trim();
+    const veiculo = document.getElementById('finVeiculo').value.trim();
+    const entrada = document.getElementById('finEntrada').value.trim();
+    const renda   = document.getElementById('finRenda').value;
+    const troca   = document.getElementById('finTroca').value;
+    const obs     = document.getElementById('finObs').value.trim();
+
+    if (!nome || !tel) {
+      alert('Preencha ao menos nome e telefone para continuar.');
+      return;
+    }
+
+    const linhas = [
+      'Olá! Quero simular um financiamento na TK Veículos:',
+      '',
+      '👤 *Nome:* ' + nome,
+      '📱 *Telefone:* ' + tel,
+    ];
+    if (cpf)     linhas.push('🪪 *CPF:* ' + cpf);
+    if (nasc)    linhas.push('🎂 *Nascimento:* ' + nasc);
+    linhas.push('');
+    if (veiculo) linhas.push('🚗 *Veículo de Interesse:* ' + veiculo);
+    if (entrada) linhas.push('💵 *Valor de Entrada:* ' + entrada);
+    if (renda)   linhas.push('💼 *Renda Mensal:* ' + renda);
+    linhas.push('🔄 *Possui Troca:* ' + troca);
+    if (obs)     linhas.push('', '📝 *Observações:* ' + obs);
+
+    const msg = linhas.join('\n');
+    window.open('https://wa.me/5521973970330?text=' + encodeURIComponent(msg), '_blank');
+  }
+
 window.toggleMenu = () => document.getElementById('navLinks').classList.toggle('open');
 </script>
 </body>
