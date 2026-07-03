@@ -569,8 +569,8 @@ a{color:inherit}
             <div class="fid" id="fidToggle" role="checkbox" aria-checked="false" tabindex="0">
               <div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
               <div class="fid-txt">
-                <b>Adicionar Plano Fidelidade <span class="add">+ R$ 160/semana</span></b>
-                <p>Alugue e conquiste: somando esse valor, após um período de <b>25 a 32 meses</b> (dependendo do veículo), <b>a moto se torna sua</b>.</p>
+                <b>Ativar Plano Fidelidade <span class="add">R$ 489,90/semana (fixo)</span></b>
+                <p>Alugue e conquiste: pagando esse valor semanal fixo, após um período de <b>18 a 32 meses</b> (dependendo do veículo), <b>a moto se torna sua</b>.</p>
               </div>
             </div>
           </div>
@@ -790,8 +790,8 @@ const PLANS = {
   quinzenal:{nome:"Quinzenal", per:"por quinzena", weeks:2},
   mensal:{nome:"Mensal", per:"por mês", weeks:4}
 };
-const FID_SEMANA = 160;
-const BRL = n => "R$ " + n.toLocaleString("pt-BR");
+const FID_WEEKLY = 489.90; // Plano Fidelidade: valor fixo semanal (18 a 32 meses, a depender do veículo)
+const BRL = n => "R$ " + n.toLocaleString("pt-BR", {minimumFractionDigits: n % 1 !== 0 ? 2 : 0, maximumFractionDigits: 2});
 
 /* ---- helpers ---- */
 const $ = s => document.querySelector(s);
@@ -849,9 +849,11 @@ fid.addEventListener("keydown",e=>{ if(e.key===" "||e.key==="Enter"){e.preventDe
 /* ---- preço ---- */
 function calcTotal(){
   if(!state.plano) return null;
-  let total = state.planoPreco;
-  if(state.fidelidade) total += FID_SEMANA * state.planoWeeks;
-  return total;
+  if(state.fidelidade) return FID_WEEKLY;
+  return state.planoPreco;
+}
+function calcPer(){
+  return state.fidelidade ? "por semana" : (state.plano ? PLANS[state.plano].per : "");
 }
 
 /* ---- update UI ---- */
@@ -865,7 +867,7 @@ function update(){
   setSpec("#rAno", state.ano || "—", !!state.ano);
   setSpec("#rCor", state.cor || "—", !!state.cor);
   setSpec("#rPlano", state.plano ? (PLANS[state.plano].nome + " · " + BRL(state.planoPreco)) : "—", !!state.plano);
-  setSpec("#rFid", state.fidelidade ? "Incluído (+"+BRL(FID_SEMANA)+"/sem)" : "Não incluído", state.fidelidade);
+  setSpec("#rFid", state.fidelidade ? "Ativado — "+BRL(FID_WEEKLY)+"/semana fixo (18 a 32 meses)" : "Não incluído", state.fidelidade);
 
   /* imagem resumo */
   const img = $("#resumoImg"), empty = $("#resumoEmpty");
@@ -876,7 +878,7 @@ function update(){
   const total = calcTotal();
   if(total!==null){
     $("#rTotal").textContent = BRL(total);
-    $("#rPer").textContent = PLANS[state.plano].per;
+    $("#rPer").textContent = calcPer();
     $("#mbTotal").textContent = BRL(total);
   } else {
     $("#rTotal").textContent = "R$ —";
@@ -946,8 +948,8 @@ function buildReservaMsg(){
   L.push("• Ano: " + (state.ano || "a confirmar"));
   L.push("• Cor: " + (state.cor || "-"));
   L.push("• Plano: " + (state.plano ? PLANS[state.plano].nome + " (" + BRL(state.planoPreco) + " " + PLANS[state.plano].per + ")" : "-"));
-  L.push("• Fidelidade: " + (state.fidelidade ? "Sim (+"+BRL(FID_SEMANA)+"/semana)" : "Não"));
-  if(total!==null) L.push("• *Valor estimado: " + BRL(total) + " " + PLANS[state.plano].per + "*");
+  L.push("• Fidelidade: " + (state.fidelidade ? "Sim — "+BRL(FID_WEEKLY)+"/semana fixo, fidelidade de 18 a 32 meses (a depender do veículo)" : "Não"));
+  if(total!==null) L.push("• *Valor estimado: " + BRL(total) + " " + calcPer() + "*");
   L.push("");
   L.push("_Sei que a disponibilidade de ano/cor e as condições finais são confirmadas pelo atendimento._");
   return L.join("\n");
