@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aluguel de Motos em Nova Iguaçu - RJ | Sem Caução | Grupo LT</title>
-<meta name="description" content="Aluguel de motos em Nova Iguaçu (RJ) sem caução: Crosser 150 ou Factor 150 em planos semanal, quinzenal e mensal, ideal para delivery e aplicativos. Plano Fidelidade para a moto virar sua. Simule online e feche pelo WhatsApp.">
+<meta name="description" content="Aluguel de motos em Nova Iguaçu (RJ) sem caução: Crosser 150 ou Factor 150 em planos semanal, quinzenal e mensal, ideal para delivery e aplicativos. Plano Premium para a moto virar sua. Simule online e feche pelo WhatsApp.">
 <meta name="theme-color" content="#0f1a3d">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Aluguel de Motos em Nova Iguaçu - RJ | Grupo LT">
@@ -267,7 +267,7 @@ a{color:inherit}
 .fid.on .box{background:var(--red);border-color:var(--red)}
 .fid .box svg{width:15px;height:15px;color:#fff;opacity:0;transform:scale(.4);transition:.15s ease}
 .fid.on .box svg{opacity:1;transform:scale(1)}
-.fid-txt b{font-family:"Archivo";font-weight:800;font-size:1.04rem;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.fid-txt > b{font-family:"Archivo";font-weight:800;font-size:1.04rem;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .fid-txt .add{font-size:.78rem;background:var(--navy);color:#fff;padding:3px 9px;border-radius:999px;font-weight:700;letter-spacing:.02em}
 .fid.on .fid-txt .add{background:var(--red)}
 .fid-txt p{margin:6px 0 0;font-size:.9rem;color:var(--slate);line-height:1.5}
@@ -439,6 +439,7 @@ a{color:inherit}
 .fid-options{display:none;margin-top:14px}
 .fid-options.show{display:block}
 .plan-sm{padding:14px 12px}
+.plan-grid.two{grid-template-columns:repeat(2,1fr)}
 .plan-sm .pl-price{font-size:1.22rem}
 .fid-prazos{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-top:12px;font-size:.82rem;color:var(--slate)}
 .fid-prazos b{color:var(--navy)}
@@ -460,7 +461,7 @@ a{color:inherit}
   "@type": ["LocalBusiness", "AutoRental"],
   "@id": "https://ltsolucoesemduasrodas.com.br/#negocio",
   "name": "Grupo LT · Soluções em Duas Rodas",
-  "description": "Aluguel de motos sem caução em Nova Iguaçu (RJ): Yamaha Crosser 150 e Factor 150 em planos semanal, quinzenal e mensal, com Plano Fidelidade.",
+  "description": "Aluguel de motos sem caução em Nova Iguaçu (RJ): Yamaha Crosser 150 e Factor 150 em planos semanal, quinzenal e mensal, com Plano Premium.",
   "url": "https://ltsolucoesemduasrodas.com.br/aluguel.html",
   "telephone": "+5521998486049",
   "priceRange": "$$",
@@ -507,10 +508,10 @@ a{color:inherit}
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Como funciona o Plano Fidelidade do Grupo LT?",
+      "name": "Como funciona o Plano Premium do Grupo LT?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "O Plano Fidelidade substitui o plano base de aluguel: com um valor fixo de R$ 489,90 por semana, R$ 979,80 por quinzena ou R$ 1.959,60 por mês, ao completar o período de fidelidade a moto passa a ser sua, sem entrada, sem caução e sem financiamento. O prazo depende do ano do modelo: motos 2018 a 2023 têm 18 meses; 2024, 20 meses; 2025, 24 meses; 2026 ou 0KM, 32 meses. Sujeito à disponibilidade da frota."
+        "text": "O Plano Premium substitui o plano base de aluguel: com um valor fixo de R$ 979,80 por quinzena ou R$ 1.959,60 por mês, ao completar o prazo do plano a moto passa a ser sua, sem entrada, sem caução e sem financiamento. O prazo depende do ano do modelo: motos 2018 a 2023 têm 18 meses; 2024, 20 meses; 2025, 24 meses; 2026 ou 0KM, 32 meses. Sujeito à disponibilidade da frota."
       }
     },
     {
@@ -518,7 +519,7 @@ a{color:inherit}
       "name": "Existe período mínimo para alugar uma moto?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sim. O prazo mínimo de permanência com o veículo é de 4 meses, independente do plano escolhido (semanal, quinzenal, mensal ou Fidelidade). Não trabalhamos com diárias nem locação de temporada."
+        "text": "Sim. O prazo mínimo de permanência com o veículo é de 4 meses, independente do plano escolhido (semanal, quinzenal, mensal ou Premium). Não trabalhamos com diárias nem locação de temporada."
       }
     },
     {
@@ -678,30 +679,25 @@ a{color:inherit}
           </div>
         </div>
 
-        <!-- STEP 3: FIDELIDADE -->
+        <!-- STEP 3: PLANO PREMIUM (antigo Fidelidade) -->
         <div class="step">
           <div class="step-head">
             <div class="step-num">3</div>
-            <div><h3>Plano Fidelidade</h3><div class="sub">Alugue e conquiste — substitui o plano base</div></div>
+            <div><h3>Plano Premium</h3><div class="sub">Alugue e conquiste — substitui o plano base</div></div>
           </div>
           <div class="step-body">
             <div class="fid" id="fidToggle" role="checkbox" aria-checked="false" tabindex="0">
               <div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
               <div class="fid-txt">
-                <b>Ativar Plano Fidelidade <span class="add">a partir de R$ 489,90/semana</span></b>
-                <p>Alugue e conquiste: escolha a periodicidade abaixo e, ao completar o período de fidelidade (<b>18 a 32 meses</b>, conforme o ano da moto), <b>a moto se torna sua</b>. Este plano substitui o plano base.</p>
+                <b>Ativar Plano Premium <span class="add">a partir de R$ 979,80/quinzena</span></b>
+                <p>Alugue e conquiste: escolha a periodicidade abaixo e, ao completar o prazo do plano (<b>18 a 32 meses</b>, conforme o ano da moto), <b>a moto se torna sua</b>. Este plano substitui o plano base.</p>
               </div>
             </div>
 
             <div class="fid-options" id="fidOptions">
-              <div class="field-label">Periodicidade do Plano Fidelidade</div>
-              <div class="plan-grid">
-                <button class="plan plan-sm" type="button" data-fidplan="semanal" data-fidprice="489.90" aria-pressed="true">
-                  <div class="pl-name">Semanal</div>
-                  <div class="pl-price tnum">R$ 489,90</div>
-                  <div class="pl-per">por semana</div>
-                </button>
-                <button class="plan plan-sm" type="button" data-fidplan="quinzenal" data-fidprice="979.80" aria-pressed="false">
+              <div class="field-label">Periodicidade do Plano Premium</div>
+              <div class="plan-grid two">
+                <button class="plan plan-sm" type="button" data-fidplan="quinzenal" data-fidprice="979.80" aria-pressed="true">
                   <div class="pl-name">Quinzenal</div>
                   <div class="pl-price tnum">R$ 979,80</div>
                   <div class="pl-per">por quinzena</div>
@@ -713,7 +709,7 @@ a{color:inherit}
                 </button>
               </div>
               <div class="fid-prazos">
-                <b>Prazo de fidelidade pelo ano da moto:</b>
+                <b>Prazo do plano pelo ano da moto:</b>
                 <span>2018–2023 · <b>18 meses</b></span>
                 <span>2024 · <b>20 meses</b></span>
                 <span>2025 · <b>24 meses</b></span>
@@ -721,7 +717,7 @@ a{color:inherit}
               </div>
               <div class="notice blue">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-                <span><b>Valor único.</b> O Plano Fidelidade substitui o plano base — você paga apenas o valor acima e, no fim da fidelidade, a moto é sua.</span>
+                <span><b>Valor único.</b> O Plano Premium substitui o plano base — você paga apenas o valor acima e, no fim do prazo, a moto é sua.</span>
               </div>
             </div>
           </div>
@@ -748,7 +744,7 @@ a{color:inherit}
             <div class="spec-row"><span class="k">Ano</span><span class="v muted" id="rAno">—</span></div>
             <div class="spec-row"><span class="k">Cor</span><span class="v muted" id="rCor">—</span></div>
             <div class="spec-row"><span class="k">Plano</span><span class="v muted" id="rPlano">—</span></div>
-            <div class="spec-row"><span class="k">Fidelidade</span><span class="v muted" id="rFid">Não incluído</span></div>
+            <div class="spec-row"><span class="k">Premium</span><span class="v muted" id="rFid">Não incluído</span></div>
           </div>
           <div class="total">
             <div class="lbl">Valor estimado</div>
@@ -855,15 +851,15 @@ a{color:inherit}
     <div class="section-head">
       <span class="eyebrow">Regras claras</span>
       <h2>Como funciona o aluguel — perguntas frequentes</h2>
-      <p>Sem letra miúda. Tudo o que você precisa saber sobre planos, Fidelidade, prazo mínimo e manutenção antes de fechar.</p>
+      <p>Sem letra miúda. Tudo o que você precisa saber sobre planos, Plano Premium, prazo mínimo e manutenção antes de fechar.</p>
     </div>
 
     <div class="faq">
       <details class="faq-item" open>
-        <summary>Como funciona o Plano Fidelidade?</summary>
+        <summary>Como funciona o Plano Premium?</summary>
         <div class="faq-body">
-          <p>O Plano Fidelidade é a forma de <b>alugar e conquistar a moto</b>. Ele é um plano próprio, que <b>substitui o plano base</b> — você nunca paga os dois. O valor é fixo do início ao fim, na periodicidade que preferir: <b>R$ 489,90 por semana</b>, <b>R$ 979,80 por quinzena</b> ou <b>R$ 1.959,60 por mês</b>.</p>
-          <p>Ao completar o período de fidelidade, <b>a moto passa a ser sua</b> — sem entrada, sem caução e sem financiamento. O prazo depende do ano do modelo:</p>
+          <p>O Plano Premium é a forma de <b>alugar e conquistar a moto</b>. Ele é um plano próprio, que <b>substitui o plano base</b> — você nunca paga os dois. O valor é fixo do início ao fim, na periodicidade que preferir: <b>R$ 979,80 por quinzena</b> ou <b>R$ 1.959,60 por mês</b>.</p>
+          <p>Ao completar o prazo do plano, <b>a moto passa a ser sua</b> — sem entrada, sem caução e sem financiamento. O prazo depende do ano do modelo:</p>
           <ul>
             <li>Motos <b>2018 a 2023</b> — 18 meses</li>
             <li>Motos <b>2024</b> — 20 meses</li>
@@ -877,7 +873,7 @@ a{color:inherit}
       <details class="faq-item">
         <summary>Existe período mínimo de permanência?</summary>
         <div class="faq-body">
-          <p>Sim. O prazo mínimo de permanência com o veículo é de <b>4 meses, independente do plano</b> escolhido — semanal, quinzenal, mensal ou Fidelidade. Não trabalhamos com diárias nem locação de temporada: nosso foco é quem usa a moto na rotina, principalmente pra trabalhar.</p>
+          <p>Sim. O prazo mínimo de permanência com o veículo é de <b>4 meses, independente do plano</b> escolhido — semanal, quinzenal, mensal ou Premium. Não trabalhamos com diárias nem locação de temporada: nosso foco é quem usa a moto na rotina, principalmente pra trabalhar.</p>
           <p style="margin-top:12px"><a href="#" id="menosTempoBtn" class="linkbtn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-1 4 8.5 8.5 0 0 1-7.6 4.5 8.4 8.4 0 0 1-4-1L3 20l1.1-5.4a8.4 8.4 0 0 1-1-4A8.5 8.5 0 0 1 10.6 3H12a8.5 8.5 0 0 1 8 8v.5Z"/></svg> Preciso de menos tempo — falar com o atendimento</a></p>
         </div>
       </details>
@@ -957,15 +953,14 @@ const WHATSAPP = "5521998486049"; // <<< TROCAR pelo número real do Grupo LT
 
 const state = { modelo:null, modeloImg:null, ano:null, cor:null,
                 plano:null, planoPreco:0, planoWeeks:0, planoPer:"",
-                fidelidade:false, fidPlano:"semanal", finalidade:null, cnh:false };
+                fidelidade:false, fidPlano:"quinzenal", finalidade:null, cnh:false };
 
 const PLANS = {
   semanal:{nome:"Semanal", per:"por semana", weeks:1},
   quinzenal:{nome:"Quinzenal", per:"por quinzena", weeks:2},
   mensal:{nome:"Mensal", per:"por mês", weeks:4}
 };
-const FID_PLANS = {
-  semanal:{nome:"Semanal", per:"por semana", preco:489.90},
+const FID_PLANS = {   /* Plano Premium (antigo Fidelidade) — só quinzenal e mensal */
   quinzenal:{nome:"Quinzenal", per:"por quinzena", preco:979.80},
   mensal:{nome:"Mensal", per:"por mês", preco:1959.60}
 };
@@ -1071,10 +1066,10 @@ function update(){
   setSpec("#rCor", state.cor || "—", !!state.cor);
   setSpec("#rPlano",
     state.fidelidade
-      ? ("Fidelidade " + FID_PLANS[state.fidPlano].nome + " · " + BRL(FID_PLANS[state.fidPlano].preco))
+      ? ("Premium " + FID_PLANS[state.fidPlano].nome + " · " + BRL(FID_PLANS[state.fidPlano].preco))
       : (state.plano ? (PLANS[state.plano].nome + " · " + BRL(state.planoPreco)) : "—"),
     !!(state.plano || state.fidelidade));
-  setSpec("#rFid", state.fidelidade ? ("Ativado — fidelidade de " + fidPrazo()) : "Não incluído", state.fidelidade);
+  setSpec("#rFid", state.fidelidade ? ("Ativado — prazo de " + fidPrazo()) : "Não incluído", state.fidelidade);
 
   /* imagem resumo */
   const img = $("#resumoImg"), empty = $("#resumoEmpty");
@@ -1103,7 +1098,7 @@ function update(){
     const falta = [];
     if(!state.modelo) falta.push("modelo");
     if(!state.cor) falta.push("cor");
-    if(!state.plano && !state.fidelidade) falta.push("plano (base ou Fidelidade)");
+    if(!state.plano && !state.fidelidade) falta.push("plano (base ou Premium)");
     $("#avancarHint").textContent = "Escolha " + falta.join(", ") + " para avançar.";
   }
   updatePreview();
@@ -1155,11 +1150,11 @@ function buildReservaMsg(){
   L.push("• Ano: " + (state.ano || "a confirmar"));
   L.push("• Cor: " + (state.cor || "-"));
   if(state.fidelidade){
-    L.push("• Plano: *Plano Fidelidade " + FID_PLANS[state.fidPlano].nome + "* (" + BRL(FID_PLANS[state.fidPlano].preco) + " " + FID_PLANS[state.fidPlano].per + ")");
-    L.push("• Fidelidade: " + fidPrazo() + " — ao final, a moto passa a ser minha");
+    L.push("• Plano: *Plano Premium " + FID_PLANS[state.fidPlano].nome + "* (" + BRL(FID_PLANS[state.fidPlano].preco) + " " + FID_PLANS[state.fidPlano].per + ")");
+    L.push("• Premium: " + fidPrazo() + " — ao final, a moto passa a ser minha");
   } else {
     L.push("• Plano: " + (state.plano ? PLANS[state.plano].nome + " (" + BRL(state.planoPreco) + " " + PLANS[state.plano].per + ")" : "-"));
-    L.push("• Fidelidade: Não");
+    L.push("• Premium: Não");
   }
   if(total!==null) L.push("• *Valor estimado: " + BRL(total) + " " + calcPer() + "*");
   L.push("");
