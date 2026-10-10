@@ -38,6 +38,8 @@ body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px
 .xp span{position:absolute;inset:0 auto 0 0;background:var(--green);box-shadow:0 0 12px var(--green);transition:width .5s ease}
 .navbtns{display:flex;gap:8px}
 .navbtns button{font-family:var(--mono);font-size:12px;background:var(--panel);color:var(--fg);border:1px solid var(--line);padding:6px 12px;cursor:pointer;letter-spacing:.06em}
+.navbtns #fs{border-color:var(--green-dim);color:var(--green)}
+@media (max-width:600px){.navbtns button{padding:6px 8px}}
 .navbtns button:hover{border-color:var(--green);color:var(--green)}
 .navbtns button:focus-visible,.dots button:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 .dots{display:flex;gap:5px;flex-wrap:wrap}
@@ -157,7 +159,7 @@ tr.flag td{background:rgba(255,193,69,.06)}
           <h1 class="glitch">Missão Comercial<br><span class="hl">Ciclo 01→10/10</span></h1>
           <p class="lead">Placar do tráfego pago e do atendimento na LeadVox, o que está travando o comercial e as missões de cada setor até 20 de outubro.</p>
           <div class="goals"><span class="goal">Investidores</span><span class="goal">Locação de motos</span><span class="goal">Moto Peças</span></div>
-          <p class="press">▶ use as setas ← → ou deslize para jogar</p>
+          <p class="press">▶ use as setas ← → ou deslize para jogar · tecla F = tela cheia</p>
         </div>
       </section>
 
@@ -443,7 +445,7 @@ tr.flag td{background:rgba(255,193,69,.06)}
   <div class="hud-bot">
     <div class="dots" id="dots" role="tablist" aria-label="Slides"></div>
     <div class="xp" aria-hidden="true"><span id="xp"></span></div>
-    <div class="navbtns"><button id="prev" type="button" aria-label="Slide anterior">◀ VOLTAR</button><button id="next" type="button" aria-label="Próximo slide">AVANÇAR ▶</button></div>
+    <div class="navbtns"><button id="fs" type="button" aria-label="Entrar em tela cheia" title="Tela cheia (F)">⛶ TELA CHEIA</button><button id="prev" type="button" aria-label="Slide anterior">◀ VOLTAR</button><button id="next" type="button" aria-label="Próximo slide">AVANÇAR ▶</button></div>
   </div>
 </div>
 
@@ -474,6 +476,18 @@ tr.flag td{background:rgba(255,193,69,.06)}
   var sx=null,sy=null;
   track.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
   track.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){go(dx<0?i+1:i-1)}sx=null});
+  var fsBtn=document.getElementById('fs'),root=document.documentElement;
+  var canFs=!!(root.requestFullscreen||root.webkitRequestFullscreen);
+  function isFs(){return !!(document.fullscreenElement||document.webkitFullscreenElement)}
+  function syncFs(){var on=isFs();fsBtn.textContent=on?'✕ SAIR DA TELA CHEIA':'⛶ TELA CHEIA';fsBtn.setAttribute('aria-label',on?'Sair da tela cheia':'Entrar em tela cheia')}
+  function toggleFs(){
+    try{
+      if(isFs()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}
+      else{var r=(root.requestFullscreen||root.webkitRequestFullscreen).call(root);if(r&&r.catch)r.catch(function(){fsBtn.textContent='TELA CHEIA INDISPONÍVEL'})}
+    }catch(e){fsBtn.textContent='TELA CHEIA INDISPONÍVEL'}
+  }
+  if(!canFs){fsBtn.hidden=true}else{fsBtn.addEventListener('click',toggleFs);document.addEventListener('fullscreenchange',syncFs);document.addEventListener('webkitfullscreenchange',syncFs)}
+  document.addEventListener('keydown',function(e){if((e.key==='f'||e.key==='F')&&canFs&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();toggleFs()}});
   var m=/^#s(\d+)$/.exec(location.hash||'');
   go(m?parseInt(m[1],10)-1:0);
 })();
