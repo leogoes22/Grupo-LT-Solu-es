@@ -12,14 +12,71 @@
 <meta property="og:description" content="LT Fixa ou LT Performance: escolha a estratégia que combina com o seu perfil e faça o seu dinheiro rodar." />
 <meta property="og:locale" content="pt_BR" />
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
-<!-- End Google Tag Manager -->
+<!-- Meta Pixel: Grupo LT | Site Investidor -->
+<script>
+(function () {
+  "use strict";
+  var pixelId = "1777475511048762";
+  var consentKey = "lt_marketing_consent_v1";
+  var consent = null, started = false, leadSent = false;
+  try { consent = localStorage.getItem(consentKey); } catch (e) {}
+  function startPixel() {
+    if (consent !== "granted") return;
+    if (started) { fbq("consent", "grant"); return; }
+    started = true;
+    !function(f,b,e,v,n,t,s) {
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";
+      n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+      s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+    }(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("set", "autoConfig", false, pixelId);
+    fbq("consent", "grant");
+    fbq("init", pixelId);
+    fbq("track", "PageView");
+  }
+  // Only static event names are sent. Never pass form values or quiz answers.
+  window.ltTrack = function (event) {
+    if (consent !== "granted" || !started) return;
+    if (event !== "Lead" && event !== "Contact") return;
+    if (event === "Lead") {
+      if (leadSent) return;
+      leadSent = true;
+    }
+    fbq("track", event);
+  };
+  function buildConsent() {
+    var style = document.createElement("style");
+    style.textContent = "#lt-cookie-panel{position:fixed;bottom:16px;left:16px;right:16px;z-index:10000;max-width:720px;margin:auto;padding:18px;background:#fff;color:#0a1024;border:1px solid #c2cae0;border-radius:14px;box-shadow:0 8px 40px #0005;font:14px/1.5 system-ui,sans-serif}#lt-cookie-panel[hidden]{display:none}#lt-cookie-panel p{margin:0 0 12px}#lt-cookie-actions{display:flex;flex-wrap:wrap;gap:10px}#lt-cookie-actions button{padding:10px 16px;border:1px solid #0f1a3d;border-radius:8px;background:#fff;color:#0f1a3d;font:600 14px system-ui,sans-serif;cursor:pointer}#lt-cookie-actions button:last-child{background:#0f1a3d;color:#fff}#lt-cookie-settings{position:fixed;bottom:8px;left:8px;z-index:9998;background:#fff;color:#0f1a3d;border:1px solid #c2cae0;border-radius:6px;padding:6px 9px;font:12px system-ui,sans-serif;cursor:pointer}";
+    document.head.appendChild(style);
+    var panel = document.createElement("section");
+    panel.id = "lt-cookie-panel"; panel.setAttribute("aria-label", "Cookies de publicidade");
+    panel.innerHTML = '<p>Podemos usar o Pixel da Meta para medir visitas e ações neste site e melhorar nossos anúncios. Isso compartilha dados de navegação com a Meta. Nome, telefone, e-mail e respostas do formulário não são enviados pelo nosso código de eventos. Você pode recusar e continuar usando o site.</p><div id="lt-cookie-actions"><button type="button" data-choice="denied">Recusar publicidade</button><button type="button" data-choice="granted">Aceitar publicidade</button></div>';
+    panel.hidden = consent === "granted" || consent === "denied";
+    document.body.appendChild(panel);
+    var settings = document.createElement("button");
+    settings.id = "lt-cookie-settings"; settings.type = "button";
+    settings.textContent = "Preferências de cookies";
+    settings.onclick = function () { panel.hidden = false; panel.querySelector("button").focus(); };
+    document.body.appendChild(settings);
+    panel.querySelectorAll("button").forEach(function (button) {
+      button.onclick = function () {
+        consent = button.getAttribute("data-choice");
+        try { localStorage.setItem(consentKey, consent); } catch (e) {}
+        if (consent === "granted") startPixel();
+        else if (started) fbq("consent", "revoke");
+        panel.hidden = true;
+      };
+    });
+  }
+  startPixel();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", buildConsent);
+  else buildConsent();
+})();
+</script>
+<!-- End Meta Pixel -->
 
-<!-- ===== TRACKING DE ADS (preencher IDs) =====
-  Meta Pixel: fbq('init','SEU_PIXEL_ID')
-  Google Ads: gtag('config','AW-XXXXXXX')
-============================================== -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -244,7 +301,7 @@ footer .made b{color:var(--steel-light)}
 </style>
 </head>
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
 
 <header class="topbar">
   <div class="wrap">
@@ -446,7 +503,7 @@ footer .made b{color:var(--steel-light)}
 <script>
 var WA_NUM="5521996052798";
 var WA_MSG="Olá! Tenho interesse em investir com o Grupo LT.";
-function waOpen(text){window.open("https://wa.me/"+WA_NUM+"?text="+encodeURIComponent(text||WA_MSG),"_blank","noopener");}
+function waOpen(text){if(!text && typeof window.ltTrack==="function") window.ltTrack("Contact");window.open("https://wa.me/"+WA_NUM+"?text="+encodeURIComponent(text||WA_MSG),"_blank","noopener");}
 document.querySelectorAll("[data-wa]").forEach(function(el){el.style.cursor="pointer";el.addEventListener("click",function(e){e.preventDefault();(window.dataLayer=window.dataLayer||[]).push({event:"whatsapp_click",form:"investidor"});waOpen();});});
 
 function v(id){return (document.getElementById(id).value||"").trim();}
@@ -458,7 +515,7 @@ function sendLead(e){
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){fc("email");return false;}
   if(wpp.length<10){fc("wpp");return false;}
   (window.dataLayer=window.dataLayer||[]).push({event:"generate_lead",form:"investidor",lead_invest:inv,lead_plano:plano});
-  if(typeof fbq==="function"){try{fbq('track','Lead',{content_name:'investidor'});}catch(x){}}
+  if(typeof window.ltTrack==="function") window.ltTrack("Lead");
   var msg="Olá! Tenho interesse em investir com o Grupo LT. Nome: "+nome+". E-mail: "+email+". Plano de interesse: "+plano+". Pretendo investir: "+inv+".";
   waOpen(msg);
   return false;
