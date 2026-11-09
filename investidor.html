@@ -36,15 +36,28 @@
     fbq("init", pixelId);
     fbq("track", "PageView");
   }
-  // Only static event names are sent. Never pass form values or quiz answers.
+  var formName = "formulario";
+  var formStarted = false;
+  var handoffSent = false;
   window.ltTrack = function (event) {
     if (consent !== "granted" || !started) return;
-    if (event !== "Lead" && event !== "Contact") return;
-    if (event === "Lead") {
+    var context = {content_name: formName};
+    if (event === "FormStart") {
+      if (formStarted) return;
+      formStarted = true;
+      fbq("trackCustom", "FormStart", context);
+    } else if (event === "Lead") {
       if (leadSent) return;
+      window.ltTrack("FormStart");
       leadSent = true;
+      fbq("track", "Lead", context);
+    } else if (event === "FormWhatsApp") {
+      if (handoffSent || !leadSent) return;
+      handoffSent = true;
+      fbq("trackCustom", "FormWhatsApp", context);
+    } else if (event === "Contact") {
+      fbq("track", "Contact", context);
     }
-    fbq("track", event);
   };
   function buildConsent() {
     var style = document.createElement("style");
@@ -508,6 +521,9 @@ document.querySelectorAll("[data-wa]").forEach(function(el){el.style.cursor="poi
 
 function v(id){return (document.getElementById(id).value||"").trim();}
 function fc(id){document.getElementById(id).focus();}
+document.querySelector("form.lead-card").addEventListener("input", function () {
+  window.ltTrack("FormStart");
+});
 function sendLead(e){
   e.preventDefault();
   var nome=v("nome"), email=v("email"), wpp=v("wpp").replace(/\D/g,""), inv=v("investimento"), plano=v("plano");
@@ -517,6 +533,7 @@ function sendLead(e){
   (window.dataLayer=window.dataLayer||[]).push({event:"generate_lead",form:"investidor",lead_invest:inv,lead_plano:plano});
   if(typeof window.ltTrack==="function") window.ltTrack("Lead");
   var msg="Olá! Tenho interesse em investir com o Grupo LT. Nome: "+nome+". E-mail: "+email+". Plano de interesse: "+plano+". Pretendo investir: "+inv+".";
+  window.ltTrack("FormWhatsApp");
   waOpen(msg);
   return false;
 }

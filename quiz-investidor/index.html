@@ -34,15 +34,28 @@
     fbq("init", pixelId);
     fbq("track", "PageView");
   }
-  // Only static event names are sent. Never pass form values or quiz answers.
+  var formName = "quiz";
+  var formStarted = false;
+  var handoffSent = false;
   window.ltTrack = function (event) {
     if (consent !== "granted" || !started) return;
-    if (event !== "Lead" && event !== "Contact") return;
-    if (event === "Lead") {
+    var context = {content_name: formName};
+    if (event === "FormStart") {
+      if (formStarted) return;
+      formStarted = true;
+      fbq("trackCustom", "FormStart", context);
+    } else if (event === "Lead") {
       if (leadSent) return;
+      window.ltTrack("FormStart");
       leadSent = true;
+      fbq("track", "Lead", context);
+    } else if (event === "FormWhatsApp") {
+      if (handoffSent || !leadSent) return;
+      handoffSent = true;
+      fbq("trackCustom", "FormWhatsApp", context);
+    } else if (event === "Contact") {
+      fbq("track", "Contact", context);
     }
-    fbq("track", event);
   };
   function buildConsent() {
     var style = document.createElement("style");
@@ -304,7 +317,7 @@ function renderQ(){
   q.o.forEach(function(o,i){
     var b=document.createElement("button");b.type="button";b.className="opt"+(ans[q.k]===i?" sel":"");
     b.innerHTML='<span class="ic">'+o.i+'</span><span><b>'+o.b+'</b>'+(o.s?'<small>'+o.s+'</small>':'')+'</span>';
-    b.onclick=function(){ans[q.k]=i;box.querySelectorAll(".opt").forEach(function(x){x.classList.remove("sel");});b.classList.add("sel");dl({event:"quiz_answer",question:q.k,answer:o.b});setTimeout(next,260);};
+    b.onclick=function(){window.ltTrack("FormStart");ans[q.k]=i;box.querySelectorAll(".opt").forEach(function(x){x.classList.remove("sel");});b.classList.add("sel");dl({event:"quiz_answer",question:q.k,answer:o.b});setTimeout(next,260);};
     box.appendChild(b);
   });
   $("qBack").style.visibility="visible";
@@ -365,6 +378,7 @@ function renderResult(){
   $("rSum").innerHTML='<div><small>Investimento</small><b>'+txt("valor")+'</b></div><div><small>Moto</small><b>'+txt("moto")+'</b></div><div><small>Começar</small><b>'+txt("quando")+'</b></div><div><small>Plano indicado</small><b>'+perfil.plano+'</b></div>';
 }
 $("waBtn").onclick=function(){
+  window.ltTrack("FormWhatsApp");
   var msg="Olá! Fiz o quiz de investidor do Grupo LT.\n\nNome: "+lead.nome+"\nE-mail: "+lead.email+"\nPerfil: "+perfil.nome+"\nPlano indicado: "+perfil.plano+"\nPretendo investir: "+txt("valor")+"\nMoto: "+txt("moto")+"\nQuando começar: "+txt("quando")+"\n\nQuero falar com um especialista.";
   dl({event:"whatsapp_click",form:"quiz_investidor",plano:perfil.plano});
   if(typeof window.ltTrack==="function") window.ltTrack("Contact");
